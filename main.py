@@ -1,8 +1,8 @@
 # Project Automates finis et Expressions rationnelles: Traitement d'un automate
-# Professeur: ZALAMEA
+# Professeur: Federico ZALAMEA
 # Avril 2024
 
-# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès
+# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès DARGOUTH
 
 
 # IMPORT
@@ -23,7 +23,6 @@ while start != False:
         print("\nMerci de votre utilisation, à bientôt !")
     else:
         choice = 9999
-        print(choice)
 
     while choice != 0: # Boucle du menu principal avec ses conditions
 
@@ -42,8 +41,9 @@ while start != False:
                 print(">>>>>> Veuillez choisir un ENTIER <<<<<<<")
 
             if choice == 1:
-                AF = lire_automate(A)
-                afficher_automate(AF)
+                print("\n")
+                lire_fichier_transition("automates/B7-" + str(A) + ".txt")
+
 
             elif choice == 2:   # Information sur l'automate
                 print("--------------------------------------------------------------------")

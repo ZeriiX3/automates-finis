@@ -1,8 +1,8 @@
 # Project Automates finis et Expressions rationnelles: Traitement d'un automate
-# Professeur: ZALAMEA
+# Professeur: Federico ZALAMEA
 # Avril 2024
 
-# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès
+# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès DARGOUTH
 
 
 
