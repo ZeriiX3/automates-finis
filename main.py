@@ -1,5 +1,15 @@
+# Project Automates finis et Expressions rationnelles: Traitement d'un automate
+# Professeur: ZALAMEA
+# Avril 2024
+
+# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès
+
+
+# IMPORT
 from fonction import *
 from affichage import *
+
+
 
 start = True
 while start != False:
@@ -15,6 +25,7 @@ while start != False:
         choice = 9999
 
     while choice != 0: # Boucle du menu principal avec ses conditions
+
             print("\n########################        Menu Principal        ########################\n")
 
             print("Automate n°",A,"\n")

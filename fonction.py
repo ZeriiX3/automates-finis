@@ -1,3 +1,11 @@
+# Project Automates finis et Expressions rationnelles: Traitement d'un automate
+# Professeur: ZALAMEA
+# Avril 2024
+
+# Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès
+
+
+
 def feur():
     return True
 
