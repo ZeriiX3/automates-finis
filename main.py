@@ -23,6 +23,7 @@ while start != False:
         print("\nMerci de votre utilisation, à bientôt !")
     else:
         choice = 9999
+        print(choice)
 
     while choice != 0: # Boucle du menu principal avec ses conditions
 
