@@ -7,8 +7,10 @@
 
 # Lecture des fichiers Automates et affichage du tableau des transitions
 def lire_fichier_transition(nom_fichier):
+
     transitions = []
     affichage = []
+
     with open(nom_fichier, 'r') as f:
         # Lire la première ligne pour le nombre de symboles dans l'alphabet
         nombre_symboles = int(f.readline().strip())
@@ -38,6 +40,7 @@ def lire_fichier_transition(nom_fichier):
 
 
 def est_standard(transitions, etats_initiaux) :
+
     if len(etats_initiaux) > 1:
         return False
     else :
@@ -46,7 +49,9 @@ def est_standard(transitions, etats_initiaux) :
                 return False
     return True
 
+
 def est_deter(transitions, etats_initiaux) :
+
     if len(etats_initiaux) > 1:
         return False
     else :
@@ -58,10 +63,13 @@ def est_deter(transitions, etats_initiaux) :
                             return False
     return True
 
+
 def est_complet(transitions, nombre_symboles, nombre_etats) :
+
     count = 0
     if len(transitions) < nombre_symboles*nombre_etats :
         return False
+
     for i in range(nombre_etats-1) :
         for j in range(len(transitions)):
             if int(transitions[j][0]) == i:
@@ -69,6 +77,7 @@ def est_complet(transitions, nombre_symboles, nombre_etats) :
         if count < nombre_symboles :
             return False
         count = 0
+
     for i in range(nombre_etats-1) :
         for j in range(nombre_symboles):
             if transitions[count][1] != chr(ord('a') + j):
@@ -90,6 +99,5 @@ def choix_automate():
             if 1 <= A <= 44:
                 return A
 
-
         except ValueError:
-            print("\nVeuillez saisir un nombre entier valide.\n")
+            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<\n")

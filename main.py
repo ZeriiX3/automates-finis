@@ -10,14 +10,14 @@ from fonction import *
 from affichage import *
 
 
-
+# Debut du Main
 start = True
 while start != False:
 
     print("PROJET AUTOMATES FINIS\n")
 
-    A = choix_automate()
-    if A == False:
+    num = choix_automate()
+    if num == False:
         choice = 0
         start = False
         print("\nMerci de votre utilisation, à bientôt !")
@@ -26,9 +26,9 @@ while start != False:
 
     while choice != 0: # Boucle du menu principal avec ses conditions
 
-            print("\n########################        Menu Principal        ########################\n")
+            print("\n########################       Menu Principal       ########################\n")
 
-            print("Automate n°",A,"\n")
+            print("Automate n°", num, "\n")
             print("1: Afficher l'automate")
             print("2: Information sur l'automate")
             print("3: Opérations sur l'automate")
@@ -38,17 +38,18 @@ while start != False:
             try:
                 choice = int(input(">>> "))
             except ValueError:
-                print(">>>>>> Veuillez choisir un ENTIER <<<<<<<")
+                print(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
 
-            automate = "automates/B7-" + str(A) + ".txt"
+
+            # Lecture des fichiers txt
+            automate = "automates/B7-" + str(num) + ".txt"
             tr, ei, et, nb_symb, nb_etats, nb_tr = lire_fichier_transition(automate)
 
 
+            # Affichage de l'automate
             if choice == 1:
                 print("\n")
-
                 affichage(tr, ei, et, nb_symb, nb_etats, nb_tr)
-
 
             elif choice == 2:   # Information sur l'automate
                 print("--------------------------------------------------------------------")
