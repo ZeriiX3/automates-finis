@@ -154,11 +154,22 @@ def est_complet(transitions, nombre_symboles, nombre_etats,liste_etats) :
             count += 1
     return True
 
-"""
-def complementariser(etats_terminaux):
-    # Inverser les états initiaux et terminaux
-    nouveaux_etats_initiaux = etats_terminaux
-    nouveaux_etats_terminaux = etats_initiaux
-
-    return nouveaux_etats_initiaux, nouveaux_etats_terminaux
-    """
+def completer(transitions, nombre_symboles, nombre_etats, nombre_transitions, liste_etats) :
+    if not est_complet(transitions,nombre_symboles,nombre_etats,liste_etats) :
+        temp = nombre_transitions
+        count = 0
+        liste_etats.append("P")
+        nombre_etats += 1
+        for i in range(nombre_etats) :
+            for j in range(nombre_symboles) :
+                for k in range(nombre_etats) :
+                    if [liste_etats[i], chr(ord('a') + j), str(k)] not in transitions :
+                        count += 1
+                if count == nombre_etats :
+                    transitions.append([liste_etats[i], chr(ord('a') + j), "P"])
+                    nombre_transitions += 1
+                count = 0
+        return transitions, nombre_symboles, nombre_etats, nombre_transitions, liste_etats
+    else :
+        print_blue("Déja complet")
+        return transitions, nombre_symboles, nombre_etats, nombre_transitions, liste_etats

@@ -60,30 +60,24 @@ def print_green_end(message, end):
 
 # Affichage des automates
 def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats) :
-
-    print_green_end("E/S    Etat    ", end='')
+    print("E/S    Etat    ", end='')
     for i in range(1, nombre_symboles+1) :
-        print_green_end("{:<8}".format(chr(ord('a') + i - 1)), end='')
+        print("{:<8}".format(chr(ord('a') + i - 1)), end='')
     print("")
-
-    # Affichage des entrées et sorties
     for i in range(nombre_etats) :
         a = 8
         if liste_etats[i] in str(etats_initiaux) and liste_etats[i] in str(etats_terminaux) :
-            print_yellow_end("E/S    ", end='')
+            print("E/S    ", end='')
         elif liste_etats[i] in str(etats_initiaux) :
-            print_blue_end("E      ", end='')
+            print("E      ", end='')
         elif liste_etats[i] in str(etats_terminaux) :
-            print_red_end("S      ", end='')
+            print("S      ", end='')
         else :
             print("-      ", end='')
-
         if len(liste_etats[i]) >= 2 :
             print(liste_etats[i],"     ", end='')
         else :
             print(liste_etats[i],"      ", end='')
-
-        # Affichage des transitions
         for k in range(nombre_symboles) :
             for j in range(nombre_transitions) :
                 if str(transitions[j][0]) == liste_etats[i] :
@@ -93,9 +87,8 @@ def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nom
                             a -= 1
                         print(transitions[j][2], end='')
                         a -= 1
-                        if int(transitions[j][2]) >= 10 :
+                        if len(str(transitions[j][2])) >= 2:
                             a -= 1
-            # Mettre un - lorsqu'il n'y a pas de transitions
             if a == 8 :
                 print("-", end='')
                 a -= 1
@@ -104,7 +97,6 @@ def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nom
             a = 8
         print()
     return
-
 
 def logo():
 

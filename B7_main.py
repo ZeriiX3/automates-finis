@@ -94,14 +94,13 @@ while start != False:
 
                     elif op == 3:
                         print_light_green("\n========== Complétation ==========\n")
-                        print("En cours de développement...")
+                        tr, nb_symb, nb_etats, nb_tr, liste_etats = completer(tr, nb_symb, nb_etats, nb_tr, liste_etats)
+                        affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)
 
                     elif op == 4:
                         print_light_green("\n========== Complémentarisation ==========\n")
                         if est_standard(tr, ei) and est_complet(tr, nb_symb, nb_etats, liste_etats):
                             print("En cours de développement...")
-                            """ei, et = complementariser(ei, et)
-                            affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)"""
                         else:
                             print_red("Ne peut pas être complémentariser")
 
