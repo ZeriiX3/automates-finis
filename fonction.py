@@ -6,17 +6,15 @@
 
 
 #Import
-from affichage import print_red
-
-
+from affichage import print_red, print_light_green, print_yellow, print_blue
 
 
 # Demande à l'utilisateur l'automate qu'il veut utiliser
 def choix_automate():
     while True:
         try:
-            print_red("\nVeuillez choisir l'automate à utiliser entre 1 et 44")
-            print("0: Quitter le programme")
+            print_light_green("\nVeuillez choisir l'automate à utiliser entre 1 et 44\n")
+            print_yellow("0: Quitter le programme")
             A = int(input(">>> "))
 
             if A == 0:
@@ -26,7 +24,7 @@ def choix_automate():
                 return A
 
         except ValueError:
-            print_red("\n>>> Veuillez saisir un nombre ENTIER valide <<<")
+            print_red("\n>>> Veuillez saisir un nombre ENTIER valide <<<\n")
 
 
 # Lecture des fichiers Automates et affichage du tableau des transitions
@@ -60,7 +58,7 @@ def lire_fichier(nom_fichier):
                 u = ligne.find(chr(ord('a') + j))
                 j += 1
             etat_depart, symbole, etat_arrivee = int(ligne[:u]), ligne[u], int(ligne[u + 1:])
-            transitions.append([etat_depart, symbole, etat_arrivee, ])
+            transitions.append([etat_depart, symbole, etat_arrivee])
             liste_etats.append(etat_depart)
             liste_etats.append(etat_arrivee)
 
@@ -106,7 +104,7 @@ def standardiser(transitions, etats_initiaux, etats_terminaux, nombre_etats, nom
             etats_terminaux.append("E")
         return transitions, etats_initiaux, etats_terminaux, nombre_etats, nb_trans, liste_etats
     else :
-        print("Déja standard")
+        print_blue("Déja standard")
         return transitions, etats_initiaux, etats_terminaux, nombre_etats, nb_trans, liste_etats
 
 

@@ -5,27 +5,80 @@
 # Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès DARGOUTH
 
 # IMPORT
+def print_red(message):
+    # Code d'échappement ANSI pour définir la couleur du texte sur rouge vif (91)
+    print("\033[1;91m",end="")  # Rouge vif
+
+    # Affichage du message en rouge
+    print(message, end="")
+
+    # Réinitialisation de la couleur du texte à la valeur par défaut (blanc)
+    print("\033[0m")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
+
+def print_red_end(message, end):
+    print("\033[1;91m",end="")  # Rouge vif
+    print(message, end="")
+    print("\033[0m", end="")
+
+def print_blue(message):
+    print("\033[1;34m", end="")  # Bleu clair
+    print(message, end="")
+    print("\033[0m")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
+
+def print_blue_end(message, end):
+    print("\033[1;34m", end="")  # Bleu clair
+    print(message, end="")
+    print("\033[0m", end="")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
+
+def print_yellow(message):
+    print("\033[1;93m", end="")  # Jaune vif
+    print(message, end="")
+    print("\033[0m")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
+
+def print_yellow_end(message, end):
+    print("\033[1;93m", end="")  # Jaune vif
+    print(message, end="")
+    print("\033[0m", end="")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
+
+def print_green(message):
+    print("\033[1;32m", end="")
+    print(message, end="")
+    print("\033[0m")
+
+def print_light_green(message):
+    print("\033[1;92m", end="")
+    print(message, end="")
+    print("\033[0m")
+
+def print_green_end(message, end):
+    print("\033[1;32m", end="")
+    print(message, end="")
+    print("\033[0m",end="")
 
 
+# Affichage des automates
 def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats) :
-    print("E/S    Etat    ", end='')
+
+    print_green_end("E/S    Etat    ", end='')
     for i in range(1, nombre_symboles+1) :
-        print("{:<8}".format(chr(ord('a') + i - 1)), end='')
+        print_green_end("{:<8}".format(chr(ord('a') + i - 1)), end='')
     print("")
+
     for i in range(nombre_etats) :
         a = 8
         if liste_etats[i] in str(etats_initiaux) and liste_etats[i] in str(etats_terminaux) :
-            print("E/S    ", end='')
+            print_yellow_end("E/S    ", end='')
         elif liste_etats[i] in str(etats_initiaux) :
-            print("E      ", end='')
+            print_blue_end("E      ", end='')
         elif liste_etats[i] in str(etats_terminaux) :
-            print("S      ", end='')
+            print_red_end("S      ", end='')
         else :
             print("-      ", end='')
         if len(liste_etats[i]) >= 2 :
             print(liste_etats[i],"     ", end='')
         else :
             print(liste_etats[i],"      ", end='')
+
         for k in range(nombre_symboles) :
             for j in range(nombre_transitions) :
                 if str(transitions[j][0]) == liste_etats[i] :
@@ -46,21 +99,6 @@ def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nom
         print()
     return
 
-
-def print_red(message):
-    # Code d'échappement ANSI pour définir la couleur du texte sur rouge vif (91)
-    print("\033[1;31m")  # Rouge vif
-
-    # Affichage du message en rouge
-    print(message)
-
-    # Réinitialisation de la couleur du texte à la valeur par défaut (blanc)
-    print("\033[0m")  # Réinitialise la couleur du texte à la valeur par défaut (blanc)
-
-def print_green(message):
-    print("\033[1;32m")
-    print(message)
-    print("\033[0m")
 
 def logo():
 
