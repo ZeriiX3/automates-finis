@@ -9,7 +9,7 @@
 def choix_automate():
     while True:
         try:
-            print("Veuillez choisir l'automate à utiliser entre 1 et 44")
+            print("\nVeuillez choisir l'automate à utiliser entre 1 et 44")
             print("0: Quitter le programme")
             A = int(input(">>> "))
 
@@ -20,7 +20,7 @@ def choix_automate():
                 return A
 
         except ValueError:
-            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<\n")
+            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<")
 
 
 # Lecture des fichiers Automates et affichage du tableau des transitions

@@ -22,11 +22,11 @@ while start != False:
         start = False
         print("\nMerci de votre utilisation, à bientôt !")
     else:
-        choice = 9999
+        choice = 99991
 
     while choice != 0: # Boucle du menu principal avec ses conditions
 
-            print("\n########################       Menu Principal       ########################\n")
+            print("\n=====================       Menu Principal       =====================\n")
 
             print("Automate n°", num, "\n")
             print("1: Afficher l'automate")
@@ -52,7 +52,7 @@ while start != False:
                 affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)
 
             elif choice == 2:   # Information sur l'automate
-                print("--------------------------------------------------------------------")
+                print("\n--------------------------------------------------------------------")
                 if est_standard(tr, ei):
                     print("L'automate est standard")
                 else:
@@ -70,7 +70,24 @@ while start != False:
                 print("--------------------------------------------------------------------")
 
             elif choice == 3:
-                print("======= Standardisation =======")
+
+                op = -1
+                while op != 0:
+                    print("")
+                    print("1: Standardiser")
+                    print("2: Déterminiser")
+                    print("0: Retour")
+                    try:
+                        op = int(input(">>> "))
+                    except ValueError:
+                        print(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
+
+                    if op == 1:
+                        print("\n======= Standardisation =======\n")
+
+                    elif op == 2:
+                        print("\n======= Déterminisation =======\n")
+                        print("En cours de développement...")
 
             elif choice == 4:
                 print("======= Reconnaissance =======")

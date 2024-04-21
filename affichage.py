@@ -10,7 +10,7 @@
 
 def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats) :
 
-    print("I/O    Etat    ", end='')
+    print("E/S    Etat    ", end='')
     for i in range(1, nombre_symboles+1) :
         print("{:<8}".format(chr(ord('a') + i - 1)), end='')
     print("")
@@ -18,11 +18,11 @@ def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nom
     for i in range(nombre_etats) :
         a = 8
         if i in etats_initiaux and i in etats_terminaux :
-            print("I/O    ", end='')
+            print("E/S    ", end='')
         elif i in etats_initiaux :
-            print("I      ", end='')
+            print("E      ", end='')
         elif i in etats_terminaux :
-            print("O      ", end='')
+            print("S      ", end='')
         else :
             print("-      ", end='')
         if i >= 10 :
@@ -52,3 +52,4 @@ def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nom
 
         print()
     return
+
