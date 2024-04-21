@@ -40,24 +40,29 @@ while start != False:
             except ValueError:
                 print(">>>>>> Veuillez choisir un ENTIER <<<<<<<")
 
+            automate = "automates/B7-" + str(A) + ".txt"
+            tr, ei, et, nb_symb, nb_etats, nb_tr = lire_fichier_transition(automate)
+
+
             if choice == 1:
                 print("\n")
-                lire_fichier_transition("automates/B7-" + str(A) + ".txt")
+
+                affichage(tr, ei, et, nb_symb, nb_etats, nb_tr)
 
 
             elif choice == 2:   # Information sur l'automate
                 print("--------------------------------------------------------------------")
-                if feur():
+                if est_standard(tr, ei):
                     print("L'automate est standard")
                 else:
                     print("L'automate n'est pas standard")
 
-                if feur():
+                if est_deter(tr, ei):
                     print("L'automate est deterministe")
                 else:
                     print("L'automate n'est pas deterministe")
 
-                if feur(G):
+                if est_complet(tr, nb_symb, nb_etats):
                     print("L'automate est complet")
                 else:
                     print("L'automate n'est pas complet")
