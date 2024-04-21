@@ -14,7 +14,7 @@ from affichage import *
 start = True
 while start != False:
 
-    print("PROJET AUTOMATES FINIS\n")
+    logo()
 
     num = choix_automate()
     if num == False:
@@ -23,6 +23,10 @@ while start != False:
         print("\nMerci de votre utilisation, à bientôt !")
     else:
         choice = 99991
+
+        # Lecture des fichiers txt
+        automate = "automates/B7-" + str(num) + ".txt"
+        tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats = lire_fichier(automate)
 
     while choice != 0: # Boucle du menu principal avec ses conditions
 
@@ -38,12 +42,7 @@ while start != False:
             try:
                 choice = int(input(">>> "))
             except ValueError:
-                print(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
-
-
-            # Lecture des fichiers txt
-            automate = "automates/B7-" + str(num) + ".txt"
-            tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats = lire_fichier_transition(automate)
+                print_red(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
 
 
             # Affichage de l'automate
@@ -63,14 +62,13 @@ while start != False:
                 else:
                     print("L'automate n'est pas deterministe")
 
-                if est_complet(tr, nb_symb, nb_etats):
+                if est_complet(tr, nb_symb, nb_etats, liste_etats):
                     print("L'automate est complet")
                 else:
                     print("L'automate n'est pas complet")
                 print("--------------------------------------------------------------------")
 
             elif choice == 3:
-
                 op = -1
                 while op != 0:
                     print("")
@@ -80,10 +78,12 @@ while start != False:
                     try:
                         op = int(input(">>> "))
                     except ValueError:
-                        print(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
+                        print_red(">>>>>> Veuillez entrer un ENTIER <<<<<<<")
 
                     if op == 1:
                         print("\n======= Standardisation =======\n")
+                        tr, ei, et, nb_etats, nb_tr, liste_etats = standardiser(tr, ei, et, nb_etats, nb_tr, liste_etats)
+                        affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)
 
                     elif op == 2:
                         print("\n======= Déterminisation =======\n")

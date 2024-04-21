@@ -5,11 +5,17 @@
 # Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès DARGOUTH
 
 
+#Import
+from affichage import print_red
+
+
+
+
 # Demande à l'utilisateur l'automate qu'il veut utiliser
 def choix_automate():
     while True:
         try:
-            print("\nVeuillez choisir l'automate à utiliser entre 1 et 44")
+            print_red("\nVeuillez choisir l'automate à utiliser entre 1 et 44")
             print("0: Quitter le programme")
             A = int(input(">>> "))
 
@@ -20,11 +26,11 @@ def choix_automate():
                 return A
 
         except ValueError:
-            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<")
+            print_red("\n>>> Veuillez saisir un nombre ENTIER valide <<<")
 
 
 # Lecture des fichiers Automates et affichage du tableau des transitions
-def lire_fichier_transition(nom_fichier):
+def lire_fichier(nom_fichier):
 
     transitions = []
     affichage = []
@@ -65,7 +71,6 @@ def lire_fichier_transition(nom_fichier):
     liste_etats = sorted(set(liste_etats))
     # Pour tout mettre en str
     liste_etats = [str(e) for e in liste_etats]
-    print(liste_etats)
 
     return transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats
 
@@ -76,9 +81,33 @@ def est_standard(transitions, etats_initiaux) :
         return False
     else :
         for i in range(len(transitions)):
-            if int(transitions[i][2]) == int(etats_initiaux[0]) :
+            if str(transitions[i][2]) == str(etats_initiaux[0]) :
                 return False
     return True
+
+def standardiser(transitions, etats_initiaux, etats_terminaux, nombre_etats, nombre_transitions, liste_etats):
+
+    nb_trans = nombre_transitions
+    if not est_standard(transitions,etats_initiaux) :
+        nombre_etats += 1
+        temp = 0
+        liste_etats.append("E")
+
+        for i in range(len(etats_initiaux)) :
+            if etats_initiaux[i] in etats_terminaux :
+                temp = 1
+        for i in range(nombre_transitions) :
+            if transitions[i][0] in etats_initiaux :
+                transitions.append(["E", transitions[i][1], transitions[i][2]])
+                nb_trans += 1
+        etats_initiaux = ["E"]
+
+        if temp == 1 :
+            etats_terminaux.append("E")
+        return transitions, etats_initiaux, etats_terminaux, nombre_etats, nb_trans, liste_etats
+    else :
+        print("Déja standard")
+        return transitions, etats_initiaux, etats_terminaux, nombre_etats, nb_trans, liste_etats
 
 
 def est_deter(transitions, etats_initiaux) :
@@ -89,21 +118,21 @@ def est_deter(transitions, etats_initiaux) :
         for i in range(len(transitions)):
             for j in range(len(transitions)):
                 if i != j :
-                    if int(transitions[i][0]) == int(transitions[j][0]) :
+                    if str(transitions[i][0]) == str(transitions[j][0]) :
                         if transitions[i][1] == transitions[j][1] :
                             return False
     return True
 
 
-def est_complet(transitions, nombre_symboles, nombre_etats) :
+def est_complet(transitions, nombre_symboles, nombre_etats,liste_etats) :
 
     count = 0
-    if len(transitions) < nombre_symboles * nombre_etats :
+    if len(transitions) < nombre_symboles*nombre_etats :
         return False
 
     for i in range(nombre_etats-1) :
         for j in range(len(transitions)):
-            if int(transitions[j][0]) == i:
+            if str(transitions[j][0]) == str(liste_etats[i]):
                 count += 1
         if count < nombre_symboles :
             return False
