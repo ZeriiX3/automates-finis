@@ -60,7 +60,7 @@ def lire_fichier(nom_fichier):
                 j += 1
 
             etat_depart, symbole, etat_arrivee = int(ligne[:u]), ligne[u], int(ligne[u + 1:])
-            transitions.append([str(etat_depart), symbole, str(etat_arrivee)])
+            transitions.append([etat_depart, symbole, etat_arrivee])
             # Mettre les états de départ et d'arriver dans une liste contenant tous les états
             liste_etats.append(etat_depart)
             liste_etats.append(etat_arrivee)
