@@ -8,7 +8,7 @@
 
 
 
-def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions) :
+def affichage(transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats) :
 
     print("I/O    Etat    ", end='')
     for i in range(1, nombre_symboles+1) :

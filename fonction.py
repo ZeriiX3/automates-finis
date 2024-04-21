@@ -5,11 +5,30 @@
 # Par Sébastien XU, Maxence DURAND, Matthieu BACHELERIE, Angel BOURDIOL, Farès DARGOUTH
 
 
+# Demande à l'utilisateur l'automate qu'il veut utiliser
+def choix_automate():
+    while True:
+        try:
+            print("Veuillez choisir l'automate à utiliser entre 1 et 44")
+            print("0: Quitter le programme")
+            A = int(input(">>> "))
+
+            if A == 0:
+                return False
+
+            if 1 <= A <= 44:
+                return A
+
+        except ValueError:
+            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<\n")
+
+
 # Lecture des fichiers Automates et affichage du tableau des transitions
 def lire_fichier_transition(nom_fichier):
 
     transitions = []
     affichage = []
+    liste_etats = []
 
     with open(nom_fichier, 'r') as f:
         # Lire la première ligne pour le nombre de symboles dans l'alphabet
@@ -25,6 +44,7 @@ def lire_fichier_transition(nom_fichier):
         # Lire la cinquième ligne pour le nombre de transitions
         nombre_transitions = int(f.readline().strip())
 
+
         # Lire les transitions à partir de la sixième ligne
         for i in range(nombre_transitions):
             ligne = f.readline().strip()
@@ -33,10 +53,21 @@ def lire_fichier_transition(nom_fichier):
             while u == -1:
                 u = ligne.find(chr(ord('a') + j))
                 j += 1
-            etat_depart, symbole, etat_arrivee = ligne[:u], ligne[u], ligne[u + 1:]
+            etat_depart, symbole, etat_arrivee = int(ligne[:u]), ligne[u], int(ligne[u + 1:])
             transitions.append([etat_depart, symbole, etat_arrivee, ])
+            liste_etats.append(etat_depart)
+            liste_etats.append(etat_arrivee)
 
-    return transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions
+    liste_etats += etats_initiaux
+    liste_etats += etats_terminaux
+
+    # Liste des états en int
+    liste_etats = sorted(set(liste_etats))
+    # Pour tout mettre en str
+    liste_etats = [str(e) for e in liste_etats]
+    print(liste_etats)
+
+    return transitions, etats_initiaux, etats_terminaux, nombre_symboles, nombre_etats, nombre_transitions, liste_etats
 
 
 def est_standard(transitions, etats_initiaux) :
@@ -67,7 +98,7 @@ def est_deter(transitions, etats_initiaux) :
 def est_complet(transitions, nombre_symboles, nombre_etats) :
 
     count = 0
-    if len(transitions) < nombre_symboles*nombre_etats :
+    if len(transitions) < nombre_symboles * nombre_etats :
         return False
 
     for i in range(nombre_etats-1) :
@@ -84,20 +115,3 @@ def est_complet(transitions, nombre_symboles, nombre_etats) :
                 return False
             count += 1
     return True
-
-
-def choix_automate():
-    while True:
-        try:
-            print("Veuillez choisir l'automate à utiliser entre 1 et 44")
-            print("0: Quitter le programme")
-            A = int(input(">>> "))
-
-            if A == 0:
-                return False
-
-            if 1 <= A <= 44:
-                return A
-
-        except ValueError:
-            print("\n>>> Veuillez saisir un nombre ENTIER valide <<<\n")

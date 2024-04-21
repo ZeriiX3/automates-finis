@@ -43,13 +43,13 @@ while start != False:
 
             # Lecture des fichiers txt
             automate = "automates/B7-" + str(num) + ".txt"
-            tr, ei, et, nb_symb, nb_etats, nb_tr = lire_fichier_transition(automate)
+            tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats = lire_fichier_transition(automate)
 
 
             # Affichage de l'automate
             if choice == 1:
                 print("\n")
-                affichage(tr, ei, et, nb_symb, nb_etats, nb_tr)
+                affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)
 
             elif choice == 2:   # Information sur l'automate
                 print("--------------------------------------------------------------------")
