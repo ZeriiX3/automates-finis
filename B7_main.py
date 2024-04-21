@@ -93,7 +93,7 @@ while start != False:
                         print("En cours de développement...")
 
                     elif op == 3:
-                        print_light_green("\n========== Complétation ==========\n")
+                        print_light_green("\n========== Complétition ==========\n")
                         tr, nb_symb, nb_etats, nb_tr, liste_etats = completer(tr, nb_symb, nb_etats, nb_tr, liste_etats)
                         affichage(tr, ei, et, nb_symb, nb_etats, nb_tr, liste_etats)
 
